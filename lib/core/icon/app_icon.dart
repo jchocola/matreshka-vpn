@@ -15,6 +15,28 @@ class AppIcon {
 
   static const infoIcon = LucideIcons.info;
 
+  static const searchIcon = LucideIcons.search;
+
+  static const allIcon = LucideIcons.globe;
+
+  static const fastIcon = LucideIcons.zap;
+  static const videoIcon = LucideIcons.video;
+  static const nearIcon = LucideIcons.mapPin;
+
+  static const favouriteIcn = LucideIcons.star;
+
+  static const usersIcon = LucideIcons.users;
+
+  static const signalIcon = LucideIcons.radio;
+
+  static const statisticIcon = LucideIcons.chartColumn;
+
+  static const regardIcon = LucideIcons.bicepsFlexed;
+
+  static const accountSettingIcon = LucideIcons.settings2;
+
+  static const helpIcon = LucideIcons.messageCircleQuestionMark;
+
   ///
   /// STRING ICON
   ///
@@ -29,4 +51,5 @@ class AppIcon {
   ///
   /// FLAGS ICON
   ///
+  static const String russiaIcon = '🇷🇺';
 }

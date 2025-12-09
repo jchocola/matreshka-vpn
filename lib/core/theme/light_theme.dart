@@ -15,4 +15,15 @@ final lightTheme = ThemeData(
     tertiary: AppColor.inActiveColor,
 
   ),
+
+
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: AppColor.bgColor,
+    selectedItemColor: AppColor.activeColor,
+    unselectedItemColor: AppColor.inActiveColor, 
+  ),
+
+  dividerTheme: DividerThemeData(
+    color: AppColor.inActiveColor.withOpacity(0.3), 
+  )
 );

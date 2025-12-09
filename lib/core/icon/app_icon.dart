@@ -43,6 +43,12 @@ class AppIcon {
 
   static const negativeIcon = LucideIcons.frown;
 
+  static const logoutIcon = LucideIcons.logOut;
+
+  static const questionIcon = LucideIcons.circleQuestionMark;
+
+  static const feedbackIcon = LucideIcons.messageCircle;
+
   ///
   /// STRING ICON
   ///

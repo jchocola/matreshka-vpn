@@ -10,4 +10,6 @@ class AppConstant {
   static const double spreadRadius = 3;
 
   static const double blurRadius = 5;
+
+  static const double linearProgressHeight = 14;
 }

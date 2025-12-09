@@ -28,6 +28,11 @@ final lightTheme = ThemeData(
     linearTrackColor: AppColor.activeColor.withOpacity(0.2)
   ),
 
+
+  expansionTileTheme: ExpansionTileThemeData(
+    
+  ),
+
   dividerTheme: DividerThemeData(
     color: AppColor.inActiveColor.withOpacity(0.3), 
   )

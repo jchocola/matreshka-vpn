@@ -7,16 +7,19 @@ class SettingListtile extends StatelessWidget {
     super.key,
     this.title = 'Title',
     this.subTitle = 'Subtitle',
-    this.icon = Icons.abc
+    this.icon = Icons.abc,
+    this.onTap
   });
   final String title;
   final String subTitle;
   final IconData icon;
+ final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Card(
       child: ListTile(
+        onTap: onTap,
         leading: leadingWidget(context , icon: icon),
         title: Text(title, style: theme.textTheme.titleMedium),
         subtitle: Text(subTitle, style: theme.textTheme.bodySmall),

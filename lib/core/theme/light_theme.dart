@@ -23,6 +23,11 @@ final lightTheme = ThemeData(
     unselectedItemColor: AppColor.inActiveColor, 
   ),
 
+  progressIndicatorTheme: ProgressIndicatorThemeData(
+    color: AppColor.activeColor,
+    linearTrackColor: AppColor.activeColor.withOpacity(0.2)
+  ),
+
   dividerTheme: DividerThemeData(
     color: AppColor.inActiveColor.withOpacity(0.3), 
   )

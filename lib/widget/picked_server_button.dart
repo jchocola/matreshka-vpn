@@ -38,7 +38,7 @@ class PickedServerButton extends StatelessWidget {
               Spacer(),
               IconButton(
                 onPressed: () {},
-                icon: Icon(AppIcon.arrowForwoardicon),
+                icon: Icon(AppIcon.arrowForwoardicon , size: AppConstant.iconSize,),
               ),
             ],
           ),

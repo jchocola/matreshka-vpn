@@ -26,29 +26,31 @@ class DefencePage extends StatelessWidget {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(AppConstant.appPadding),
-        child: Column(
-          spacing: AppConstant.appPadding,
-          children: [
-            DefenceAppBar(),
-            PrivacyOnOff(),
-            const Gap(AppConstant.appPadding * 2),
-            TurnOnOffbutton(),
-            const Gap(AppConstant.appPadding),
-            DescriptionWidget(),
-            PickedServerButton(),
-            BigButton(
-              title: 'Мне повезет!',
-              borderColor: theme.colorScheme.secondary.withOpacity(0.3),
-              icon: AppIcon.luckyIcon,
-              withIcon: true,
-              textColor: theme.colorScheme.secondary,
-              bgColor: theme.cardColor,
-            ),
-            BigButton(title: 'Помощь',withIcon:  true,icon: AppIcon.infoIcon,borderColor: theme.colorScheme.tertiary.withOpacity(0.3),),
-
-
-            Advice(content: '💡 Совет: Используйте "Мне повезет!" для автоматического выбора лучшего сервера',)
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            spacing: AppConstant.appPadding,
+            children: [
+              DefenceAppBar(),
+              PrivacyOnOff(),
+              const Gap(AppConstant.appPadding * 2),
+              TurnOnOffbutton(),
+              const Gap(AppConstant.appPadding),
+              DescriptionWidget(),
+              PickedServerButton(),
+              BigButton(
+                title: 'Мне повезет!',
+                borderColor: theme.colorScheme.secondary.withOpacity(0.3),
+                icon: AppIcon.luckyIcon,
+                withIcon: true,
+                textColor: theme.colorScheme.secondary,
+                bgColor: theme.cardColor,
+              ),
+              BigButton(title: 'Помощь',withIcon:  true,icon: AppIcon.infoIcon,borderColor: theme.colorScheme.tertiary.withOpacity(0.3),),
+          
+          
+              Advice(content: '💡 Совет: Используйте "Мне повезет!" для автоматического выбора лучшего сервера',)
+            ],
+          ),
         ),
       ),
     );

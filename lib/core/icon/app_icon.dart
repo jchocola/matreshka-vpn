@@ -10,6 +10,7 @@ class AppIcon {
   static const protectedIcon = LucideIcons.shieldCheck;
 
   static const arrowForwoardicon = Icons.arrow_forward_ios_rounded;
+  static const arrowBackIcon = Icons.arrow_back_ios_outlined;
 
   static const luckyIcon = LucideIcons.sparkles;
 
@@ -36,6 +37,11 @@ class AppIcon {
   static const accountSettingIcon = LucideIcons.settings2;
 
   static const helpIcon = LucideIcons.messageCircleQuestionMark;
+
+  static const uploadIcon = LucideIcons.upload;
+  static const downloadIcon = LucideIcons.download;
+
+  static const negativeIcon = LucideIcons.frown;
 
   ///
   /// STRING ICON

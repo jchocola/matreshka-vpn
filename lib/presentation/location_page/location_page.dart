@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matreshka_vpn/core/constant/app_constant.dart';
 import 'package:matreshka_vpn/core/icon/app_icon.dart';
 import 'package:matreshka_vpn/presentation/location_page/widget/selector_widget.dart';
@@ -47,32 +48,29 @@ class LocationPage extends StatelessWidget {
         ),
 
         SliverAppBar(
-             backgroundColor: theme.cardColor,
+          backgroundColor: theme.cardColor,
           surfaceTintColor: theme.cardColor,
           pinned: true,
           toolbarHeight: 45,
-          flexibleSpace:   Padding(
-            padding:  EdgeInsets.symmetric(horizontal: AppConstant.appPadding),
-            child: Center(child: Column(
-              children: [
-                Divider(),
-                SelectorWidget(),
-                Divider(),
-              ],
-            )),
+          flexibleSpace: Padding(
+            padding: EdgeInsets.symmetric(horizontal: AppConstant.appPadding),
+            child: Center(
+              child: Column(children: [Divider(), SelectorWidget(), Divider()]),
+            ),
           ),
         ),
 
         SliverList(
           delegate: SliverChildBuilderDelegate(
             childCount: 5,
-            (context,index)=> ServerInfoCard()
+            (context, index) => ServerInfoCard(
+              onTap: () {
+                context.push('/location_page/server_page');
+              },
+            ),
           ),
         ),
       ],
     );
   }
 }
-
-
-

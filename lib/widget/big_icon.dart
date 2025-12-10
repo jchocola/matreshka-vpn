@@ -10,7 +10,8 @@ class BigButton extends StatelessWidget {
     this.icon = Icons.ac_unit_outlined,
     this.withIcon = false,
     this.textColor = Colors.black,
-    this.bgColor = Colors.transparent
+    this.bgColor = Colors.transparent,
+    this.onTap
   });
   final String title;
   final Color borderColor;
@@ -18,29 +19,33 @@ class BigButton extends StatelessWidget {
   final bool withIcon;
   final Color textColor;
   final Color bgColor;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      //   margin: EdgeInsets.all(AppConstant.appPadding),
-      padding: EdgeInsets.all(AppConstant.appPadding),
-      decoration: BoxDecoration(
-        border: Border.all(color: borderColor, width: 1),
-        color: bgColor,
-        borderRadius: BorderRadius.circular(AppConstant.borederRadius),
-      ),
-      child: Row(
-        spacing: AppConstant.appPadding,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          withIcon
-              ? Icon(icon, size: AppConstant.iconSize, color: textColor)
-              : SizedBox(),
-          Text(
-            title,
-            style: theme.textTheme.bodyMedium!.copyWith(color: textColor),
-          ),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        //   margin: EdgeInsets.all(AppConstant.appPadding),
+        padding: EdgeInsets.all(AppConstant.appPadding),
+        decoration: BoxDecoration(
+          border: Border.all(color: borderColor, width: 1),
+          color: bgColor,
+          borderRadius: BorderRadius.circular(AppConstant.borederRadius),
+        ),
+        child: Row(
+          spacing: AppConstant.appPadding,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            withIcon
+                ? Icon(icon, size: AppConstant.iconSize, color: textColor)
+                : SizedBox(),
+            Text(
+              title,
+              style: theme.textTheme.bodyMedium!.copyWith(color: textColor),
+            ),
+          ],
+        ),
       ),
     );
   }

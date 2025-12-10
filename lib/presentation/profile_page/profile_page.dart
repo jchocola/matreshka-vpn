@@ -3,6 +3,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matreshka_vpn/core/constant/app_constant.dart';
 import 'package:matreshka_vpn/core/icon/app_icon.dart';
+import 'package:matreshka_vpn/presentation/profile_page/page/log_out_page/log_out_page.dart';
 import 'package:matreshka_vpn/presentation/profile_page/widget/profile_card.dart';
 import 'package:matreshka_vpn/widget/big_icon.dart';
 import 'package:matreshka_vpn/widget/custom_scaffold_bg.dart';
@@ -33,7 +34,7 @@ class ProfilePage extends StatelessWidget {
             SettingListtile(
               onTap: () {
                 context.push('/profile_page/achivements');
-              }, 
+              },
               title: 'Мои достижения',
               subTitle: 'Смотрите как вы молодец',
               icon: AppIcon.regardIcon,
@@ -49,19 +50,24 @@ class ProfilePage extends StatelessWidget {
             SettingListtile(
               onTap: () {
                 context.push('/profile_page/help_support');
-              }, 
+              },
               title: 'Помощь и поддержка',
               subTitle: 'Ответы на вопросы',
               icon: AppIcon.helpIcon,
             ),
 
-            
             Spacer(),
             BigButton(
               title: 'Выйти из аккаунта',
               bgColor: theme.colorScheme.primary,
               borderColor: theme.colorScheme.primary,
               textColor: theme.cardColor,
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => LogOutPage(),
+                );
+              },
             ),
           ],
         ),

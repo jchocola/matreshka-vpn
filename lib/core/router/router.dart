@@ -1,8 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:matreshka_vpn/main_page.dart';
+import 'package:matreshka_vpn/presentation/auth_page/auth_page.dart';
 import 'package:matreshka_vpn/presentation/defence_page/defence_page.dart';
 import 'package:matreshka_vpn/presentation/location_page/location_page.dart';
 import 'package:matreshka_vpn/presentation/location_page/page/server_info_page/server_info_page.dart';
+import 'package:matreshka_vpn/presentation/onboarding_page/onboarding_page.dart';
 import 'package:matreshka_vpn/presentation/profile_page/page/account_setting/account_setting_page.dart';
 import 'package:matreshka_vpn/presentation/profile_page/page/achivement_page/achivement_page.dart';
 import 'package:matreshka_vpn/presentation/profile_page/page/help_support/help_support_page.dart';
@@ -12,6 +14,8 @@ final router = GoRouter(
   initialLocation: '/defence_page',
 
   routes: [
+    GoRoute(path: '/onboarding' , builder: (context, state) => OnboardingPage(),),
+    GoRoute(path: '/auth' , builder: (context, state) => AuthPage(),),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) =>
           MainPage(navShell: navigationShell),

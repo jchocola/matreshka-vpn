@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:matreshka_vpn/core/constant/app_constant.dart';
@@ -5,11 +7,11 @@ import 'package:matreshka_vpn/core/icon/app_icon.dart';
 import 'package:matreshka_vpn/presentation/defence_page/provider/defence_page_provider.dart';
 import 'package:matreshka_vpn/presentation/defence_page/widget/defence_app_bar.dart';
 import 'package:matreshka_vpn/presentation/defence_page/widget/description_widget.dart';
+import 'package:matreshka_vpn/presentation/defence_page/widget/ip_info_widget.dart';
 import 'package:matreshka_vpn/widget/advice.dart';
 import 'package:matreshka_vpn/widget/big_icon.dart';
 import 'package:matreshka_vpn/presentation/defence_page/widget/privacy_on_off.dart';
 import 'package:matreshka_vpn/presentation/defence_page/widget/turnOnOffButton.dart';
-import 'package:matreshka_vpn/widget/custom_app_bar.dart';
 import 'package:matreshka_vpn/widget/custom_scaffold_bg.dart';
 import 'package:matreshka_vpn/widget/picked_server_button.dart';
 import 'package:provider/provider.dart';
@@ -40,8 +42,9 @@ class DefencePage extends StatelessWidget {
               const Gap(AppConstant.appPadding * 2),
               TurnOnOffbutton(),
               const Gap(AppConstant.appPadding),
+              IpInfoWidget(),
               DescriptionWidget(),
-              PickedServerButton(),
+             // PickedServerButton(),
               BigButton(
                 title: 'Мне повезет!',
                 borderColor: theme.colorScheme.secondary.withOpacity(0.3),
@@ -68,6 +71,12 @@ class DefencePage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: BigButton(
+                      textColor: defensePageProvider_l.isOpenVPNrunning == true
+                          ? theme.colorScheme.primary
+                          : Colors.black54,
+                      bgColor: defensePageProvider_l.isOpenVPNrunning == true
+                          ? theme.colorScheme.secondary.withOpacity(0.3)
+                          : Colors.transparent,
                       borderColor:
                           defensePageProvider_l.isOpenVPNrunning == true
                           ? theme.colorScheme.secondary.withOpacity(0.3)
@@ -85,9 +94,11 @@ class DefencePage extends StatelessWidget {
                     ),
                   ),
                   Expanded(child: BigButton(title: 'WireGuard')),
-                  Expanded(child: BigButton(title: 'VLESS')),
+                
                 ],
               ),
+               BigButton(title: 'VLESS'),
+               
             ],
           ),
         ),

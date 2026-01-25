@@ -57,7 +57,7 @@ class OpenvpnRepoImpl implements OpenvpnRepository {
         onVpnStageChanged: (stage, rawStage) {
           _stage = stage;
             stageNotifier.value = stage; // notify listeners
-          log('Stage changed $stage');
+          log('Stage changed $stage + $rawStage', );
         },
       );
 

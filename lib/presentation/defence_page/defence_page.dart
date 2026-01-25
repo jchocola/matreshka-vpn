@@ -48,7 +48,17 @@ class DefencePage extends StatelessWidget {
               BigButton(title: 'Помощь',withIcon:  true,icon: AppIcon.infoIcon,borderColor: theme.colorScheme.tertiary.withOpacity(0.3),),
           
           
-              Advice(content: '💡 Совет: Используйте "Мне повезет!" для автоматического выбора лучшего сервера',)
+              Advice(content: '💡 Совет: Используйте "Мне повезет!" для автоматического выбора лучшего сервера',),
+
+              Row(
+                spacing: AppConstant.appPadding,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(child: BigButton(title: 'Open VPN',)),
+                    Expanded(child: BigButton(title: 'WireGuard',)),
+                      Expanded(child: BigButton(title: 'VLESS',)),
+                ],
+              )
             ],
           ),
         ),

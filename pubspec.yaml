@@ -42,6 +42,7 @@ dependencies:
   blur: ^4.0.2
   introduction_screen: ^4.0.0
   openvpn_flutter: ^1.3.4
+  provider: ^6.1.5+1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/openvpn/jchocola-hk2.vpnjantit-tcp-2501.ovpn
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

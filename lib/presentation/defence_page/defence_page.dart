@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:matreshka_vpn/core/constant/app_constant.dart';
 import 'package:matreshka_vpn/core/icon/app_icon.dart';
+import 'package:matreshka_vpn/presentation/defence_page/provider/defence_page_provider.dart';
 import 'package:matreshka_vpn/presentation/defence_page/widget/defence_app_bar.dart';
 import 'package:matreshka_vpn/presentation/defence_page/widget/description_widget.dart';
 import 'package:matreshka_vpn/widget/advice.dart';
@@ -11,6 +12,7 @@ import 'package:matreshka_vpn/presentation/defence_page/widget/turnOnOffButton.d
 import 'package:matreshka_vpn/widget/custom_app_bar.dart';
 import 'package:matreshka_vpn/widget/custom_scaffold_bg.dart';
 import 'package:matreshka_vpn/widget/picked_server_button.dart';
+import 'package:provider/provider.dart';
 
 class DefencePage extends StatelessWidget {
   const DefencePage({super.key});
@@ -21,8 +23,11 @@ class DefencePage extends StatelessWidget {
     return Scaffold(body: CustomScaffoldBg(child: buildBody(context)));
   }
 
-  Widget buildBody(context) {
+  Widget buildBody(BuildContext context) {
     final theme = Theme.of(context);
+    final defensePageProvider_r = context.read<DefencePageProvider>();
+    final defensePageProvider_l = context.watch<DefencePageProvider>();
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(AppConstant.appPadding),
@@ -45,20 +50,44 @@ class DefencePage extends StatelessWidget {
                 textColor: theme.colorScheme.secondary,
                 bgColor: theme.cardColor,
               ),
-              BigButton(title: 'Помощь',withIcon:  true,icon: AppIcon.infoIcon,borderColor: theme.colorScheme.tertiary.withOpacity(0.3),),
-          
-          
-              Advice(content: '💡 Совет: Используйте "Мне повезет!" для автоматического выбора лучшего сервера',),
+              BigButton(
+                title: 'Помощь',
+                withIcon: true,
+                icon: AppIcon.infoIcon,
+                borderColor: theme.colorScheme.tertiary.withOpacity(0.3),
+              ),
+
+              Advice(
+                content:
+                    '💡 Совет: Используйте "Мне повезет!" для автоматического выбора лучшего сервера',
+              ),
 
               Row(
                 spacing: AppConstant.appPadding,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(child: BigButton(title: 'Open VPN',)),
-                    Expanded(child: BigButton(title: 'WireGuard',)),
-                      Expanded(child: BigButton(title: 'VLESS',)),
+                  Expanded(
+                    child: BigButton(
+                      borderColor:
+                          defensePageProvider_l.isOpenVPNrunning == true
+                          ? theme.colorScheme.secondary.withOpacity(0.3)
+                          : Colors.black,
+                      title: 'Open VPN',
+                      onTap: () async {
+                        // STOP CASE
+                        if (defensePageProvider_r.isOpenVPNrunning) {
+                          await defensePageProvider_r.openVpnDisconnect();
+                        } else {
+                          // START CASE
+                          await defensePageProvider_r.openVpnConnect();
+                        }
+                      },
+                    ),
+                  ),
+                  Expanded(child: BigButton(title: 'WireGuard')),
+                  Expanded(child: BigButton(title: 'VLESS')),
                 ],
-              )
+              ),
             ],
           ),
         ),

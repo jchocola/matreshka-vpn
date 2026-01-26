@@ -100,11 +100,28 @@ class DefencePage extends StatelessWidget {
                       ),
                       Expanded(
                         child: BigButton(
+                          textColor:
+                              defensePageProvider_l.isWireGuardrunning == true
+                              ? theme.colorScheme.primary
+                              : Colors.black54,
+                          bgColor:
+                              defensePageProvider_l.isWireGuardrunning == true
+                              ? theme.colorScheme.secondary.withOpacity(0.3)
+                              : Colors.transparent,
+                          borderColor:
+                              defensePageProvider_l.isWireGuardrunning == true
+                              ? theme.colorScheme.secondary.withOpacity(0.3)
+                              : Colors.black, 
                           title: 'WireGuard',
                           onTap: () async {
-
-                            //
-                            await defensePageProvider_r.wireguardConnect();
+                            if (defensePageProvider_r.isWireGuardrunning) {
+                              // stop case
+                              await defensePageProvider_r
+                                  .wireguardStopConnect();
+                            } else {
+                              // connect
+                              await defensePageProvider_r.wireguardConnect();
+                            }
                           },
                         ),
                       ),

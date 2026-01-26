@@ -1,13 +1,21 @@
+import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:matreshka_vpn/domain/repository/vpn_repository.dart';
+import 'package:openvpn_flutter/openvpn_flutter.dart';
 import 'package:wireguard_flutter/wireguard_flutter.dart';
 
 class WireGuardRepoImpl implements VPNRepository {
   final wireguard = WireGuardFlutter.instance;
 
-    final ValueNotifier<VPNStage?> stageNotifier = ValueNotifier<VPNStage?>(null);
+Stream<VpnStage> get stageStream => wireguard.vpnStageSnapshot;
+
+StreamSubscription<VpnStage> listenStage(void Function(VpnStage) onData,
+          {Function? onError, void Function()? onDone, bool? cancelOnError}) =>
+      wireguard.vpnStageSnapshot.listen(onData,
+          onError: onError, onDone: onDone, cancelOnError: cancelOnError);
 
   @override
   Future<void> connect() async {
@@ -24,8 +32,6 @@ class WireGuardRepoImpl implements VPNRepository {
         providerBundleIdentifier: 'matreshka.vpn', // your app identifier
       );
 
-      wireguard.vpnStageSnapshot.
-      
     } catch (e) {
       log(e.toString());
     }
@@ -48,4 +54,8 @@ class WireGuardRepoImpl implements VPNRepository {
       log(e.toString());
     }
   }
+
+    Future<VpnStage> stage ()async{
+      return  await wireguard.stage();
+    } 
 }

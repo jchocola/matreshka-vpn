@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:matreshka_vpn/data/model/internet_info_model.dart';
 import 'package:matreshka_vpn/data/repository/ip_repo_impl.dart';
 import 'package:matreshka_vpn/data/repository/openvpn_repo_impl.dart';
+import 'package:matreshka_vpn/data/repository/vless_repo_impl.dart';
 import 'package:matreshka_vpn/data/repository/wire_guard_repo_impl.dart';
 
 import 'package:openvpn_flutter/openvpn_flutter.dart';
@@ -16,11 +17,13 @@ class DefencePageProvider extends ChangeNotifier {
   final OpenvpnRepoImpl openvpnRepository;
   final IpRepoImpl ipRepoImpl;
   final WireGuardRepoImpl wireGuardRepository;
+  final VlessRepoImpl vlessRepository;
   StreamSubscription<VpnStage>? _wgSub;
   DefencePageProvider({
     required this.openvpnRepository,
     required this.ipRepoImpl,
     required this.wireGuardRepository,
+    required this.vlessRepository,
   }) {
     //INITIALIZE
     openvpnRepository.initialize();
@@ -41,6 +44,8 @@ class DefencePageProvider extends ChangeNotifier {
       }
     });
 
+    vlessRepository.initialize();
+
     loadInternetInfoModel();
   }
 
@@ -48,6 +53,7 @@ class DefencePageProvider extends ChangeNotifier {
   bool isProtected = false;
   bool isOpenVPNrunning = false;
   bool isWireGuardrunning = false;
+  bool isVlessrunning = false;
   InternetInfoModel? internetInfoModel;
 
   void startLoading() {
@@ -129,5 +135,32 @@ class DefencePageProvider extends ChangeNotifier {
     }
   }
 
+  ///
+  /// VLESS
+  ///
+  Future<void> vlessConnect() async {
+    try {
+      log('Vless conect');
+      await vlessRepository.connect();
 
+      isVlessrunning = true;
+      isProtected = true;
+      notifyListeners();
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<void> vlessStopConnect() async {
+    try {
+      log('Vless stop');
+      await vlessRepository.disconnect();
+
+      isVlessrunning = false;
+      isProtected = false;
+      notifyListeners();
+    } catch (e) {
+      log(e.toString());
+    }
+  }
 }

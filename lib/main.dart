@@ -5,6 +5,7 @@ import 'package:matreshka_vpn/core/theme/dark_theme.dart';
 import 'package:matreshka_vpn/core/theme/light_theme.dart';
 import 'package:matreshka_vpn/data/repository/ip_repo_impl.dart';
 import 'package:matreshka_vpn/data/repository/openvpn_repo_impl.dart';
+import 'package:matreshka_vpn/data/repository/vless_repo_impl.dart';
 import 'package:matreshka_vpn/data/repository/wire_guard_repo_impl.dart';
 import 'package:matreshka_vpn/main_page.dart';
 import 'package:matreshka_vpn/presentation/defence_page/provider/defence_page_provider.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) =>
-              DefencePageProvider(openvpnRepository: OpenvpnRepoImpl.instance, ipRepoImpl: IpRepoImpl.instance, wireGuardRepository: WireGuardRepoImpl()),
+              DefencePageProvider(openvpnRepository: OpenvpnRepoImpl.instance, ipRepoImpl: IpRepoImpl.instance, wireGuardRepository: WireGuardRepoImpl(), vlessRepository: VlessRepoImpl()),
         ),
       ],
       child: AdaptiveTheme(

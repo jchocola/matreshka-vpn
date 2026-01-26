@@ -127,7 +127,29 @@ class DefencePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  BigButton(title: 'VLESS'),
+                  BigButton(
+                     textColor:
+                              defensePageProvider_l.isVlessrunning == true
+                              ? theme.colorScheme.primary
+                              : Colors.black54,
+                          bgColor:
+                              defensePageProvider_l.isVlessrunning == true
+                              ? theme.colorScheme.secondary.withOpacity(0.3)
+                              : Colors.transparent,
+                          borderColor:
+                              defensePageProvider_l.isVlessrunning == true
+                              ? theme.colorScheme.secondary.withOpacity(0.3)
+                              : Colors.black, 
+                    title: 'VLESS', onTap: () async{
+                         if (defensePageProvider_r.isVlessrunning) {
+                              // stop case
+                              await defensePageProvider_r
+                                  .vlessStopConnect();
+                            } else {
+                              // connect
+                              await defensePageProvider_r.vlessConnect();
+                            }
+                    },),
                 ],
               ),
             ],

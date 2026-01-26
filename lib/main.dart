@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:matreshka_vpn/core/router/router.dart';
 import 'package:matreshka_vpn/core/theme/dark_theme.dart';
 import 'package:matreshka_vpn/core/theme/light_theme.dart';
+import 'package:matreshka_vpn/data/repository/ip_repo_impl.dart';
+import 'package:matreshka_vpn/data/repository/openvpn_repo_impl.dart';
+import 'package:matreshka_vpn/data/repository/vless_repo_impl.dart';
+import 'package:matreshka_vpn/data/repository/wire_guard_repo_impl.dart';
 import 'package:matreshka_vpn/main_page.dart';
+import 'package:matreshka_vpn/presentation/defence_page/provider/defence_page_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,17 +19,24 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-      light: lightTheme,
-      dark: darkTheme,
-      initial: AdaptiveThemeMode.light,
-      builder:(lightTheme,darkTheme)=> MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: router,
-        title: 'Flutter Demo',
-        theme: lightTheme,
-        darkTheme: darkTheme,
-       
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) =>
+              DefencePageProvider(openvpnRepository: OpenvpnRepoImpl.instance, ipRepoImpl: IpRepoImpl.instance, wireGuardRepository: WireGuardRepoImpl(), vlessRepository: VlessRepoImpl()),
+        ),
+      ],
+      child: AdaptiveTheme(
+        light: lightTheme,
+        dark: darkTheme,
+        initial: AdaptiveThemeMode.light,
+        builder: (lightTheme, darkTheme) => MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: router,
+          title: 'Flutter Demo',
+          theme: lightTheme,
+          darkTheme: darkTheme,
+        ),
       ),
     );
   }

@@ -10,7 +10,10 @@ class DefenceAppBar extends StatelessWidget {
     final theme = Theme.of(context);
     return Row(
       spacing: AppConstant.appPadding,
-      children: [Text(AppIcon.matreshkaIconStr), Text('Matreshka VPN', style: theme.textTheme.titleLarge,)],
+      children: [
+        Text(AppIcon.matreshkaIconStr),
+        Text('Matreshka VPN', style: theme.textTheme.titleLarge),
+      ],
     );
   }
 }

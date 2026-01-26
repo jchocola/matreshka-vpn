@@ -21,9 +21,21 @@ class DefencePageProvider extends ChangeNotifier {
 
     openvpnRepository.stageNotifier.addListener(_onStageChanged);
   }
+
+  bool isloading = false;
   bool isProtected = false;
   bool isOpenVPNrunning = false;
   InternetInfoModel? internetInfoModel;
+
+  void startLoading() {
+    isloading = true;
+    notifyListeners();
+  }
+
+  void stopLoading() {
+    isloading = false;
+    notifyListeners();
+  }
 
   void _onStageChanged() async {
     final s = openvpnRepository.stageNotifier.value;
@@ -42,13 +54,12 @@ class DefencePageProvider extends ChangeNotifier {
 
   Future<void> loadInternetInfoModel() async {
     try {
-       internetInfoModel = await ipRepoImpl.getAllInfoAboutInternet();
-    log(internetInfoModel.toString());
-    notifyListeners();
+      internetInfoModel = await ipRepoImpl.getAllInfoAboutInternet();
+      log(internetInfoModel.toString());
+      notifyListeners();
     } catch (e) {
       log(e.toString());
     }
-   
   }
 
   @override
@@ -61,7 +72,13 @@ class DefencePageProvider extends ChangeNotifier {
   /// OPEN VPN
   ///
   Future<void> openVpnConnect() async {
-    await openvpnRepository.connect();
+    try {
+      startLoading();
+      await openvpnRepository.connect();
+    } catch (e) {
+    } finally {
+      stopLoading();
+    }
   }
 
   Future<void> openVpnDisconnect() async {

@@ -42,7 +42,7 @@ class DefencePage extends StatelessWidget {
               const Gap(AppConstant.appPadding * 2),
               TurnOnOffbutton(),
               const Gap(AppConstant.appPadding),
-              IpInfoWidget(),
+              //IpInfoWidget(),
               DescriptionWidget(),
              // PickedServerButton(),
               BigButton(
@@ -65,39 +65,45 @@ class DefencePage extends StatelessWidget {
                     '💡 Совет: Используйте "Мне повезет!" для автоматического выбора лучшего сервера',
               ),
 
-              Row(
+        Column(
                 spacing: AppConstant.appPadding,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(
-                    child: BigButton(
-                      textColor: defensePageProvider_l.isOpenVPNrunning == true
-                          ? theme.colorScheme.primary
-                          : Colors.black54,
-                      bgColor: defensePageProvider_l.isOpenVPNrunning == true
-                          ? theme.colorScheme.secondary.withOpacity(0.3)
-                          : Colors.transparent,
-                      borderColor:
-                          defensePageProvider_l.isOpenVPNrunning == true
-                          ? theme.colorScheme.secondary.withOpacity(0.3)
-                          : Colors.black,
-                      title: 'Open VPN',
-                      onTap: () async {
-                        // STOP CASE
-                        if (defensePageProvider_r.isOpenVPNrunning) {
-                          await defensePageProvider_r.openVpnDisconnect();
-                        } else {
-                          // START CASE
-                          await defensePageProvider_r.openVpnConnect();
-                        }
-                      },
-                    ),
+                  Row(
+                    spacing: AppConstant.appPadding,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: BigButton(
+                          textColor: defensePageProvider_l.isOpenVPNrunning == true
+                              ? theme.colorScheme.primary
+                              : Colors.black54,
+                          bgColor: defensePageProvider_l.isOpenVPNrunning == true
+                              ? theme.colorScheme.secondary.withOpacity(0.3)
+                              : Colors.transparent,
+                          borderColor:
+                              defensePageProvider_l.isOpenVPNrunning == true
+                              ? theme.colorScheme.secondary.withOpacity(0.3)
+                              : Colors.black,
+                          title: 'Open VPN',
+                          onTap: () async {
+                            // STOP CASE
+                            if (defensePageProvider_r.isOpenVPNrunning) {
+                              await defensePageProvider_r.openVpnDisconnect();
+                            } else {
+                              // START CASE
+                              await defensePageProvider_r.openVpnConnect();
+                            }
+                          },
+                        ),
+                      ),
+                      Expanded(child: BigButton(title: 'WireGuard')),
+                    
+                    ],
                   ),
-                  Expanded(child: BigButton(title: 'WireGuard')),
-                
+                   BigButton(title: 'VLESS'),
                 ],
-              ),
-               BigButton(title: 'VLESS'),
+              ) 
+              
                
             ],
           ),

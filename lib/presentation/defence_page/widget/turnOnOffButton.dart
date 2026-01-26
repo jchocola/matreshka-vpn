@@ -22,7 +22,7 @@ class TurnOnOffbutton extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          AppIcon.activeIconStr,
+          defencePageProvider_l.isProtected ?  AppIcon.activeIconStr : AppIcon.inactiveIconStr,
           style: theme.textTheme.titleLarge!.copyWith(
             fontSize: AppConstant.bigIcon,
           ),

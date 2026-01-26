@@ -44,7 +44,7 @@ class DefencePage extends StatelessWidget {
               const Gap(AppConstant.appPadding),
               //IpInfoWidget(),
               DescriptionWidget(),
-             // PickedServerButton(),
+              // PickedServerButton(),
               BigButton(
                 title: 'Мне повезет!',
                 borderColor: theme.colorScheme.secondary.withOpacity(0.3),
@@ -65,7 +65,7 @@ class DefencePage extends StatelessWidget {
                     '💡 Совет: Используйте "Мне повезет!" для автоматического выбора лучшего сервера',
               ),
 
-        Column(
+              Column(
                 spacing: AppConstant.appPadding,
                 children: [
                   Row(
@@ -74,10 +74,12 @@ class DefencePage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: BigButton(
-                          textColor: defensePageProvider_l.isOpenVPNrunning == true
+                          textColor:
+                              defensePageProvider_l.isOpenVPNrunning == true
                               ? theme.colorScheme.primary
                               : Colors.black54,
-                          bgColor: defensePageProvider_l.isOpenVPNrunning == true
+                          bgColor:
+                              defensePageProvider_l.isOpenVPNrunning == true
                               ? theme.colorScheme.secondary.withOpacity(0.3)
                               : Colors.transparent,
                           borderColor:
@@ -96,15 +98,21 @@ class DefencePage extends StatelessWidget {
                           },
                         ),
                       ),
-                      Expanded(child: BigButton(title: 'WireGuard')),
-                    
+                      Expanded(
+                        child: BigButton(
+                          title: 'WireGuard',
+                          onTap: () async {
+
+                            //
+                            await defensePageProvider_r.wireguardConnect();
+                          },
+                        ),
+                      ),
                     ],
                   ),
-                   BigButton(title: 'VLESS'),
+                  BigButton(title: 'VLESS'),
                 ],
-              ) 
-              
-               
+              ),
             ],
           ),
         ),

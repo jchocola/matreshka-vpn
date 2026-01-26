@@ -45,6 +45,7 @@ dependencies:
   provider: ^6.1.5+1
   network_info_plus: ^7.0.0
   vpn_info: ^0.0.7
+  wireguard_flutter: ^0.1.3
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +73,7 @@ flutter:
   assets:
     - assets/
     - assets/openvpn/jchocola-hk2.vpnjantit-tcp-2501.ovpn
+    - assets/wire_guard/nguyentb-gr3jan.conf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

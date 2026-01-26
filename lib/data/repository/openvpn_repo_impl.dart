@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:matreshka_vpn/domain/repository/openvpn_repository.dart';
+import 'package:matreshka_vpn/domain/repository/vpn_repository.dart';
 import 'package:openvpn_flutter/openvpn_flutter.dart';
 
-class OpenvpnRepoImpl implements OpenvpnRepository {
+class OpenvpnRepoImpl implements VPNRepository {
   late OpenVPN openvpn;
   VPNStage? _stage;
   VpnStatus? _status;
@@ -56,8 +56,8 @@ class OpenvpnRepoImpl implements OpenvpnRepository {
         },
         onVpnStageChanged: (stage, rawStage) {
           _stage = stage;
-            stageNotifier.value = stage; // notify listeners
-          log('Stage changed $stage + $rawStage', );
+          stageNotifier.value = stage; // notify listeners
+          log('Stage changed $stage + $rawStage');
         },
       );
 
